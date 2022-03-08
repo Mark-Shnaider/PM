@@ -15,6 +15,9 @@ namespace PM.DAL.Domain.Models
         public TaskStatus Status { get; set; }
         public TaskPriority Priority { get; set; }
         public string? Commentary { get; set; }
+        public Guid WorkerId { get; set; }
+
+        public virtual Worker Worker { get; set; }
 
     }
 }
