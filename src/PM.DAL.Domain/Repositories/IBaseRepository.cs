@@ -13,7 +13,7 @@ namespace PM.DAL.Domain.Repositories
         public IQueryable<T> GetAll();
         public IQueryable<T> SearchFor(Expression<Func<T, bool>> predicate);
         public T GetById(Guid Id);
-        public Task<T> GetByIdAsync();
+        public Task<T> GetByIdAsync(Guid Id);
         public void Add(T entity);
         public void Update(T entity);
         public void Delete(T entity);

@@ -21,57 +21,77 @@ namespace PM.DAL.Repositories
         }
         public void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entityEntry = _context.Entry(entity);
+            if (entityEntry.State != EntityState.Detached)
+                entityEntry.State = EntityState.Added;
+            else
+                _dbSet.Add(entity);
         }
 
         public void Commit()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
-        public Task CommitAsync()
+        public async Task CommitAsync()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entityEntry = _context.Entry(entity);
+            if (entityEntry.State != EntityState.Deleted)
+            {
+                entityEntry.State = EntityState.Deleted;
+            }
+            else
+            {
+                _dbSet.Attach(entity);
+                _dbSet.Remove(entity);
+            }
         }
 
         public void Delete(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            entities.ToList().ForEach(Delete);
         }
 
         public void DeleteById(Guid Id)
         {
-            throw new NotImplementedException();
+            var entity = GetById(Id);
+            if (entity == null)
+                return;
+
+            Delete(entity);
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbSet.AsQueryable();
         }
 
         public TEntity GetById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _dbSet.Find(Id);
         }
 
-        public Task<TEntity> GetByIdAsync()
+        public async Task<TEntity> GetByIdAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(Id);
         }
 
         public IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(predicate);
         }
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entityEntry = _context.Entry(entity);
+            if (entityEntry.State == EntityState.Detached)
+                _context.Attach(entity);
+            entityEntry.State = EntityState.Modified;
         }
     }
 }
