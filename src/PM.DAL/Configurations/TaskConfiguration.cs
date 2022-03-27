@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 
 namespace PM.DAL.Configurations
 {
-    public class TaskConfiguration : IEntityTypeConfiguration<Worker>
+    public class TaskConfiguration : IEntityTypeConfiguration<TaskModel>
     {
-        public void Configure(EntityTypeBuilder<Worker> builder)
+        public void Configure(EntityTypeBuilder<TaskModel> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Status).IsRequired();
+            builder.Property(x => x.Priority).IsRequired();
+            builder.Property(x => x.Commentary).IsRequired(false);
+            builder.HasOne(x => x.Worker).WithMany().HasForeignKey(x => x.WorkerId).OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

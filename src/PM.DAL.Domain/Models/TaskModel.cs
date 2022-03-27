@@ -11,10 +11,10 @@ namespace PM.DAL.Domain.Models
 {
     public class TaskModel : BaseEntity
     {
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public TaskStatus Status { get; set; }
         public TaskPriority Priority { get; set; }
-        public string? Commentary { get; set; }
+        public string Commentary { get; set; }
         public Guid WorkerId { get; set; }
 
         public virtual Worker Worker { get; set; }

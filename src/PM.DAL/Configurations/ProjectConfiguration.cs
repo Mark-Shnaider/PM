@@ -13,7 +13,13 @@ namespace PM.DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x =>x.Description).IsRequired();
+            builder.Property(x =>x.CompanyName).IsRequired(false);
+            builder.Property(x =>x.Priority).IsRequired();
+            builder.Property(x =>x.Started).IsRequired();
+            builder.Property(x =>x.Ended).IsRequired(false);
         }
     }
 }

@@ -11,10 +11,10 @@ namespace PM.DAL.Domain.Models
 {
     public class Worker: BaseEntity
     {
-        public string? Name { get; set; }
-        public string? SurName { get; set; }
-        public string? Patronymic { get; set; }
-        public string? Email { get; set; }
+        public string Name { get; set; }
+        public string SurName { get; set; }
+        public string Patronymic { get; set; }
+        public string Email { get; set; }
         public WorkerType WorkerType { get; set; }
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
