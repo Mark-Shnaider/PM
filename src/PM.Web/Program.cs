@@ -12,9 +12,8 @@ builder.Services.AddDbContext<EntityContext>(opt =>
         opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<User, Role>()
+    .AddRoles<Role>()
     .AddEntityFrameworkStores<EntityContext>()
-    .AddSignInManager<User>()
-    .AddUserManager<User>()
     .AddDefaultTokenProviders();
 
 
