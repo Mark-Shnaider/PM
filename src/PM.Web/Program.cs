@@ -14,6 +14,8 @@ builder.Services.AddDbContext<EntityContext>(opt =>
 builder.Services.AddIdentity<User, Role>()
     .AddRoles<Role>()
     .AddEntityFrameworkStores<EntityContext>()
+    .AddSignInManager<SignInManager<User>>()
+    .AddRoleManager<RoleManager<Role>>()
     .AddDefaultTokenProviders();
 
 
