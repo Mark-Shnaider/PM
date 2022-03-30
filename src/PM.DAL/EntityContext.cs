@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PM.DAL
 {
-    public class EntityContext:IdentityDbContext<User, Role, Guid>
+    public class EntityContext: IdentityDbContext<User, Role, Guid>
     {
         public EntityContext(DbContextOptions options)
             :base(options)

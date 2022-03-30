@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace PM.DAL.Domain.Models.Identity
 {
-    public class User:IdentityUser<Guid>
+    public class User: IdentityUser<Guid>
     {
         public virtual Worker Worker { get; set; }
     }
