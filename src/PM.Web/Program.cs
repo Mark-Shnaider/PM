@@ -1,16 +1,31 @@
+using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using PM.Application.Services.UserService.Login;
 using PM.DAL;
 using PM.DAL.Domain;
 using PM.DAL.Domain.Models.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using PM.Application.Services;
+using PM.Application.Interfaces;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<EntityContext>(opt =>
         opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddMediatR(typeof(LoginHandler).Assembly);
+
+builder.Services.AddMvc();
+
+builder.Services.AddControllers();
 
 builder.Services.AddIdentity<User, Role>()
     .AddRoles<Role>()
@@ -29,15 +44,40 @@ builder.Services.Configure<IdentityOptions>(options =>
 }
 );
 
+
+
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Super secret key"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(
+        opt =>
+        {
+            opt.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = key,
+                ValidateAudience = false,
+                ValidateIssuer = false,
+            };
+        });
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
+app.UseRouting();
 
 app.UseAuthentication();
 //app.UseAuthorization();
 
-app.MapGet("/", () => "Hello World!");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.UseRouting();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -47,7 +87,5 @@ using (var scope = app.Services.CreateScope())
 
     Seed.SeedDataAsync(unitOfWork, userManager).Wait();
 }
-
-
 
 app.Run();
