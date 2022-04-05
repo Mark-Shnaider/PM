@@ -15,6 +15,7 @@ using PM.Application.Services;
 using PM.Application.Interfaces;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,14 @@ builder.Services.AddDbContext<EntityContext>(opt =>
 
 builder.Services.AddMediatR(typeof(LoginHandler).Assembly);
 
-builder.Services.AddMvc();
+builder.Services.AddMvc(option =>
+{
+    option.EnableEndpointRouting = false;
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    option.Filters.Add(new AuthorizeFilter(policy));
+}).SetCompatibilityVersion(CompatibilityVersion.Latest);
 
 builder.Services.AddControllers();
 
@@ -43,8 +51,6 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = false;
 }
 );
-
-
 
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtTokenKey"]));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -70,14 +76,12 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-
-app.UseRouting();
 
 using (var scope = app.Services.CreateScope())
 {

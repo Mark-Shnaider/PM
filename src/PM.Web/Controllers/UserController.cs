@@ -12,6 +12,7 @@ namespace PM.Web.Controllers
     public class UserController : BaseController
     {
         public UserController(IMediator mediator)
+            : base(mediator)
         {
             
         }
@@ -19,20 +20,20 @@ namespace PM.Web.Controllers
         [HttpGet("index")]
         public async Task<ActionResult<int>> Index()
         {
-            return 5; ;
+            return 5;
         }
 
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> LoginAsync(LoginQuery query)
         {
-            return await Mediator.Send(query);
+            return await _mediator.Send(query);
         }
 
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> RegisterAsync(RegistrationCommand command)
         {
-            return await Mediator.Send(command);
+            return await _mediator.Send(command);
         }
     }
 }
