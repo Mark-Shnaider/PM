@@ -16,6 +16,8 @@ using PM.Application.Interfaces;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using PM.Web.Middleware;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,16 +33,20 @@ builder.Services.AddMvc(option =>
         .RequireAuthenticatedUser()
         .Build();
     option.Filters.Add(new AuthorizeFilter(policy));
-}).SetCompatibilityVersion(CompatibilityVersion.Latest);
+});
 
 builder.Services.AddControllers();
 
-builder.Services.AddIdentity<User, Role>()
-    .AddRoles<Role>()
+builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<EntityContext>()
-    .AddSignInManager<SignInManager<User>>()
-    .AddRoleManager<RoleManager<Role>>()
-    .AddDefaultTokenProviders();
+    .AddSignInManager<SignInManager<User>>();
+
+//builder.Services.AddIdentity<User, Role>()
+//    .AddRoles<Role>()
+//    .AddEntityFrameworkStores<EntityContext>()
+//    .AddSignInManager<SignInManager<User>>()
+//    .AddRoleManager<RoleManager<Role>>()
+//    .AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -78,9 +84,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers();
+    endpoints.MapDefaultControllerRoute();
 });
 
 using (var scope = app.Services.CreateScope())
