@@ -46,7 +46,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 
 
-var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Super secret key"));
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtTokenKey"]));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(
         opt =>

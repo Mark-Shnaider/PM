@@ -18,8 +18,7 @@ namespace PM.Application.Services
 
         public JwtGenerator(IConfiguration config)
         {
-           //_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Super secret key"));
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtTokenKey"]));
         }
 
         public string GenerateToken(User user)
