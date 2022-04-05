@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using PM.Web.Middleware;
 using Microsoft.Extensions.DependencyInjection;
+using PM.Application.Services.WorkerService.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<EntityContext>(opt =>
         opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddMediatR(typeof(LoginHandler).Assembly);
+builder.Services.AddMediatR(typeof(WorkerQueryHandlers).Assembly);
 
 builder.Services.AddMvc(option =>
 {

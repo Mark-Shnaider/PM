@@ -17,4 +17,8 @@
     <ProjectReference Include="..\PM.DAL\PM.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\WorkerService\Commands\" />
+  </ItemGroup>
+
 </Project>
