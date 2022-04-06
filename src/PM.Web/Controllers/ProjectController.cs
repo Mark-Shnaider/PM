@@ -13,12 +13,6 @@ namespace PM.Web.Controllers
 
         }
 
-        [HttpGet("test")]
-        [Authorize]
-        public string Test()
-        {
-            return "Check";
-        }
         public async Task<IActionResult> Index()
         {
              throw new NotImplementedException();

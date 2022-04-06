@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PM.Application.Services.WorkerService
 {
-    public class WorkerDto : IRequest<>
+    public class WorkerDto 
     {
     }
 }
