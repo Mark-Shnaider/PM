@@ -11,7 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PM.Application.Services.UserService.Register
+namespace PM.Application.CQ.UserCQ.Register
 {
     public class RegistrationHandler : IRequestHandler<RegistrationCommand, UserDto>
     {

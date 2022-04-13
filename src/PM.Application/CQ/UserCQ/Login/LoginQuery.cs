@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 
-namespace PM.Application.Services.UserService.Login
+namespace PM.Application.CQ.UserCQ.Login
 {
     public class LoginQuery: IRequest<UserDto>
     {

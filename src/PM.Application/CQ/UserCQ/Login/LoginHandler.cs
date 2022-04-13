@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PM.DAL.Domain.Models.Identity;
-using PM.Application.Services.UserService;
+using PM.Application.CQ.UserCQ;
 using System.Net;
 using PM.Application.Exceptions;
 using PM.Application.Interfaces;
 
-namespace PM.Application.Services.UserService.Login
+namespace PM.Application.CQ.UserCQ.Login
 {
     public class LoginHandler : IRequestHandler<LoginQuery, UserDto>
     {
