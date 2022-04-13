@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using PM.Application.Services.UserService.Login;
+using PM.Application.CQ.UserCQ.Login;
 using PM.DAL;
 using PM.DAL.Domain;
 using PM.DAL.Domain.Models.Identity;
@@ -18,7 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using PM.Web.Middleware;
 using Microsoft.Extensions.DependencyInjection;
-using PM.Application.Services.WorkerService.Queries;
+using PM.Application.CQ.WorkerCQ.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 

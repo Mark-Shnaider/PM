@@ -2,9 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PM.Application.Services.UserService;
-using PM.Application.Services.UserService.Login;
-using PM.Application.Services.UserService.Register;
+using PM.Application.CQ.UserCQ;
+using PM.Application.CQ.UserCQ.Login;
+using PM.Application.CQ.UserCQ.Register;
 
 namespace PM.Web.Controllers
 {
