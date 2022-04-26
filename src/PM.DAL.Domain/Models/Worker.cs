@@ -17,10 +17,9 @@ namespace PM.DAL.Domain.Models
         public string Email { get; set; }
         public WorkerType WorkerType { get; set; }
         public Guid UserId { get; set; }
-        public Guid ProjectId { get; set; }
 
-        public virtual ICollection<TaskModel> Tasks { get; set; }
         public virtual User User { get; set; }
-        public virtual Project Project { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<TaskModel> Tasks { get; set; }
     }
 }

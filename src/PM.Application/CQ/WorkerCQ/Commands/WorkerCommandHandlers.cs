@@ -33,7 +33,6 @@ namespace PM.Application.CQ.WorkerCQ.Commands
                 SurName = request.Worker.SurName,
                 Patronymic = request.Worker.Patronymic,
                 WorkerType = request.Worker.WorkerType,
-                ProjectId = request.Worker.ProjectId,
                 UserId = request.Worker.UserId,
                 CreatedAt = DateTime.Now,
                 LastModifiedAt = DateTime.Now,
@@ -62,7 +61,6 @@ namespace PM.Application.CQ.WorkerCQ.Commands
             worker.SurName = request.Worker.SurName;
             worker.Patronymic = request.Worker.Patronymic;
             worker.WorkerType = request.Worker.WorkerType;
-            worker.ProjectId = request.Worker.ProjectId;
             worker.UserId = request.Worker.UserId;
             worker.LastModifiedAt = DateTime.Now;
 

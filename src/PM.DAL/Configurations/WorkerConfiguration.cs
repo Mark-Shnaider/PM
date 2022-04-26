@@ -20,7 +20,7 @@ namespace PM.DAL.Configurations
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.WorkerType).IsRequired();
             builder.HasOne(x => x.User).WithOne(x => x.Worker).HasForeignKey<Worker>(x => x.UserId);
-            builder.HasOne(x => x.Project).WithMany().HasForeignKey(x => x.ProjectId).OnDelete(DeleteBehavior.ClientSetNull);
+            builder.HasMany(x => x.Projects).WithMany(x => x.Workers);
         }
     }
 }
