@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PM.Application.CQ.ProjectCQ
 {
-    public class ProjectDto
+    public record ProjectDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -30,17 +30,16 @@ namespace PM.Application.CQ.UserCQ.Register
 			var users = _unitOfWork.GetRepository<User>();
 			if (users.GetAll().Where(x => x.Email == request.Email).Any())
 			{
-				throw new RestException(HttpStatusCode.BadRequest, new { Email = "Email already exist" });
+				throw new RestException(HttpStatusCode.BadRequest, new { Email = "Email is already exist" });
 			}
 
 			if (users.GetAll().Where(x => x.UserName == request.UserName).Any())
 			{
-				throw new RestException(HttpStatusCode.BadRequest, new { UserName = "UserName already exist" });
+				throw new RestException(HttpStatusCode.BadRequest, new { UserName = "UserName is already exist" });
 			}
 
 			var user = new User
 			{
-				//DisplayName = request.DisplayName,
 				Email = request.Email,
 				UserName = request.UserName
 			};

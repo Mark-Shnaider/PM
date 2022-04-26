@@ -17,13 +17,6 @@ namespace PM.Web.Controllers
             
         }
 
-        [HttpGet("index")]
-        public async Task<ActionResult<int>> Index()
-        {
-            return 5;
-        }
-
-
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> LoginAsync(LoginQuery query)
         {

@@ -13,7 +13,8 @@ namespace PM.Application.CQ.WorkerCQ.Commands
 {
     public class WorkerCommandHandlers :
         IRequestHandler<CreateWorkerCommand, Guid>,
-        IRequestHandler<UpdateWorkerCommand, Guid>
+        IRequestHandler<UpdateWorkerCommand, Guid>,
+        IRequestHandler<DeleteWorkerCommand, Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
         public WorkerCommandHandlers(IUnitOfWork unitOfWork)
@@ -51,7 +52,7 @@ namespace PM.Application.CQ.WorkerCQ.Commands
             var workerRepository = _unitOfWork.GetRepository<Worker>();
 
             var worker = workerRepository.GetById(request.Worker.Id);
-            if (worker == null)
+            if (worker is null)
             {
                 throw new RestException(HttpStatusCode.NotFound);
             }
@@ -69,6 +70,23 @@ namespace PM.Application.CQ.WorkerCQ.Commands
             await _unitOfWork.CommitAsync();
 
             return request.Worker.Id;
+        }
+
+        public async Task<Unit> Handle(DeleteWorkerCommand request, CancellationToken cancellationToken)
+        {
+            var workerRepository = _unitOfWork.GetRepository<Worker>();
+
+            var worker = workerRepository.GetById(request.Id);
+
+            if (worker is null)
+            {
+                throw new RestException(HttpStatusCode.NotFound);
+            }
+
+            workerRepository.Delete(worker);
+            await _unitOfWork.CommitAsync();
+
+            return Unit.Value;
         }
     }
 }

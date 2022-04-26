@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PM.Application.CQ.WorkerCQ
 {
-    public class WorkerDto  : IRequest<Guid>, IRequest<Unit>
+    public record WorkerDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -21,8 +21,8 @@ namespace PM.Application.CQ.WorkerCQ
         public Guid UserId { get; set; }
         public Guid ProjectId { get; set; }
 
-        public List<TaskDto> Tasks { get; set; }
-        //public User User { get; set; }
-        public ProjectDto Project { get; set; }
+        //public List<TaskDto> Tasks { get; set; }
+        ////public User User { get; set; }
+        //public ProjectDto Project { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using TaskStatus = PM.DAL.Domain.Enums.TaskStatus;
 
 namespace PM.Application.CQ.TaskCQ
 {
-    public class TaskDto
+    public record TaskDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
