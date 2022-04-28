@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "efe08a21-9963-409b-b0e8-e0bf89a2af2e",
+		"name": "PM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\": \"testuserfirst@test.com\",\r\n    \"Password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/user/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"DisplayName\": \"DisplayName\",\r\n    \"UserName\": \"UserName\",\r\n    \"Email\": \"testuser@test.com\",\r\n    \"Password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/user/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllWorkers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJVc2VyMSIsIm5iZiI6MTY1MTEyMzM0MSwiZXhwIjoxNjUxNzI4MTQxLCJpYXQiOjE2NTExMjMzNDF9.uDCihkXD816bjiIqcCJU9WpfGKTTBIfh_gQ3n0KWezP3sOhPbD2VX9FVIGZ_eRITVhePImmn1Mrnv_V79vywJg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Skip\": 0,\r\n    \"Take\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/worker/index",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"worker",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWorker",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJVc2VyMSIsIm5iZiI6MTY1MTEyMzM0MSwiZXhwIjoxNjUxNzI4MTQxLCJpYXQiOjE2NTExMjMzNDF9.uDCihkXD816bjiIqcCJU9WpfGKTTBIfh_gQ3n0KWezP3sOhPbD2VX9FVIGZ_eRITVhePImmn1Mrnv_V79vywJg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": \"6257b922-3696-4a05-96c9-8b8013152e3a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/worker/details",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"worker",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateWorker",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJVc2VyMSIsIm5iZiI6MTY1MTEyMzM0MSwiZXhwIjoxNjUxNzI4MTQxLCJpYXQiOjE2NTExMjMzNDF9.uDCihkXD816bjiIqcCJU9WpfGKTTBIfh_gQ3n0KWezP3sOhPbD2VX9FVIGZ_eRITVhePImmn1Mrnv_V79vywJg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Worker\":\r\n    {\r\n        \"Name\" : \"Ivan\",\r\n        \"SurName\" : \"Ivanov\",\r\n        \"Patronymic\" : \"Ivanovich\", \r\n        \"Email\" : \"ivan@gmail.com\",\r\n        \"WorkerType\" : 0,\r\n        \"UserId\": \"86c0f8da-997f-409d-b6ea-23ed1390b5ec\"\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/worker/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"worker",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateWorker",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJVc2VyMSIsIm5iZiI6MTY1MTEyMzM0MSwiZXhwIjoxNjUxNzI4MTQxLCJpYXQiOjE2NTExMjMzNDF9.uDCihkXD816bjiIqcCJU9WpfGKTTBIfh_gQ3n0KWezP3sOhPbD2VX9FVIGZ_eRITVhePImmn1Mrnv_V79vywJg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Worker\":\r\n    {\r\n        \"Id\" : \"6257b922-3696-4a05-96c9-8b8013152e3a\",\r\n        \"Name\" : \"Ivan1\",\r\n        \"SurName\" : \"Ivanov2\",\r\n        \"Patronymic\" : \"Ivanovich3\", \r\n        \"Email\" : \"ivan@gmail.com\",\r\n        \"WorkerType\" : 0,\r\n        \"UserId\": \"86c0f8da-997f-409d-b6ea-23ed1390b5ec\"\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/worker/update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"worker",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteWorker",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJVc2VyMSIsIm5iZiI6MTY1MTEyMzM0MSwiZXhwIjoxNjUxNzI4MTQxLCJpYXQiOjE2NTExMjMzNDF9.uDCihkXD816bjiIqcCJU9WpfGKTTBIfh_gQ3n0KWezP3sOhPbD2VX9FVIGZ_eRITVhePImmn1Mrnv_V79vywJg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\" : \"6257b922-3696-4a05-96c9-8b8013152e3a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7235/api/worker/update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7235",
+					"path": [
+						"api",
+						"worker",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
