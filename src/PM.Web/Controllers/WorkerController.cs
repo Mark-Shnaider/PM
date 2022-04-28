@@ -35,13 +35,13 @@ namespace PM.Web.Controllers
             return await _mediator.Send(command);
         }
 
-        [HttpPost]
+        [HttpPost("update")]
         public async Task<ActionResult<Guid>> UpdateWorker(UpdateWorkerCommand command)
         {
             return await _mediator.Send(command);
         }
 
-        [HttpPost]
+        [HttpPost("delete")]
         public async Task<ActionResult<Unit>> DeleteWorker(DeleteWorkerCommand command)
         {
             return await _mediator.Send(command);

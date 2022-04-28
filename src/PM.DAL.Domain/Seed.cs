@@ -18,11 +18,13 @@ namespace PM.DAL.Domain
                       {
                         new User
                             {
+                              Id = Guid.Parse("86c0f8da-997f-409d-b6ea-23ed1390b5ec"),
                               UserName = "User1",
                               Email = "testuserfirst@test.com"
                             },
                         new User
                             {
+                              Id = Guid.Parse("00ad55f1-8820-4354-9785-e9c137c9296c"),
                               UserName = "User2",
                               Email = "testusersecond@test.com"
                              }
