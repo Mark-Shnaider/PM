@@ -79,7 +79,6 @@ builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
 
 app.Use(async (context, next) =>
 {
@@ -93,6 +92,8 @@ app.Use(async (context, next) =>
 });
 
 app.UseStaticFiles();
+
+app.UseHttpsRedirection();
 
 app.UseRouting();
 
