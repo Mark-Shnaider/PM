@@ -8,13 +8,20 @@ using PM.DAL.Domain.Models;
 
 namespace PM.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class WorkerController : BaseController
     {
         public WorkerController(IMediator mediator) 
             : base(mediator)
         {
 
+        }
+
+        [HttpGet("check")]
+        [AllowAnonymous]
+        public async Task<ActionResult<int>> Check()
+        {
+            return 5;
         }
 
         [HttpGet("index")]

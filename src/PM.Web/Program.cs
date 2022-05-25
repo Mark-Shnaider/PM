@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using PM.Web.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using PM.Application.CQ.WorkerCQ.Queries;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,22 +81,28 @@ builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
 var app = builder.Build();
 
 
-app.Use(async (context, next) =>
-{
-    await next();
-    var path = context.Request.Path.Value;
-    if (context.Response.StatusCode == 404 && !Path.HasExtension(path) && !path.StartsWith("/api"))
-    {
-        context.Request.Path = "/index.html";
-        await next();
-    }
-});
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
 
-app.UseStaticFiles();
+app.MapFallbackToFile("index.html"); ;
+
+//app.Use(async (context, next) =>
+//{
+//    await next();
+//    var path = context.Request.Path.Value;
+//    if (context.Response.StatusCode == 404 && !Path.HasExtension(path) && !path.StartsWith("/api"))
+//    {
+//        context.Request.Path = "/index.html";
+//        await next();
+//    }
+//});
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 app.UseRouting();
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();
