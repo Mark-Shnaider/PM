@@ -104,6 +104,16 @@ app.UseRouting();
 
 app.UseCors();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseCors(policy => policy
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .WithOrigins("http://localhost:8080")
+        .AllowCredentials());
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 
